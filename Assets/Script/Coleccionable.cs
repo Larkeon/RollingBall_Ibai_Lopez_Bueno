@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Coleccionable : MonoBehaviour
 {
+    Vector3 vectorVelocidad = new Vector3(0,1,0);
+    Vector3 vectorVelocidad2 = new Vector3(0,1,0);
     [SerializeField] float velocidad;
-    Vector3 vectorRotation = new Vector3(1,0,0);
-    float contador = 50f;
-    [SerializeField] float tiempo;
+    [SerializeField] float velocidad2;
+    float contador = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,17 +18,18 @@ public class Coleccionable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        contador -=  tiempo * Time.deltaTime;
-        if(contador > 0)
+        transform.Rotate(vectorVelocidad.normalized * velocidad, Space.World);
+
+        if (contador > 0)
         {
-            transform.Translate (vectorRotation * velocidad);
-            
+            contador -= Time.deltaTime;
+            transform.Translate(vectorVelocidad2.normalized * velocidad2, Space.World);
         }
 
-        else if(contador <= 0)
+        else if (contador <= 0)
         {
-            velocidad = velocidad * -1;
-            contador = 50f;
-        } 
+            vectorVelocidad2 = vectorVelocidad2 * -1;
+            contador = 1f;
+        }
     }
 }
