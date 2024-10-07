@@ -8,9 +8,9 @@ public class Bola : MonoBehaviour
     Vector3 direccionF = new Vector3(0, 1, 0);
     Vector3 direccionF2 = new Vector3(0, 0, 1);
     Vector3 direccionF3 = new Vector3(1, 0, 0);
-    [SerializeField] float fuerza;
-    [SerializeField] float fuerzaws;
-    [SerializeField] float fuerzaad;
+    [SerializeField] int fuerza;
+    [SerializeField] int fuerzaws;
+    [SerializeField] int fuerzaad;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,30 +20,30 @@ public class Bola : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        rb.AddForce(new Vector3 (Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical")).normalized, ForceMode.Force);
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(direccionF * fuerza, ForceMode.Impulse);
+            rb.AddForce(direccionF  , ForceMode.Impulse);
         }
-        while (Input.GetKeyDown(KeyCode.W))
-        {
-            rb.AddForce(direccionF2 * fuerzaws, ForceMode.Force);
-        }
-        while (Input.GetKeyDown(KeyCode.S))
-        {
-            rb.AddForce(direccionF2 * -fuerzaws, ForceMode.Force);
-        }
-        while (Input.GetKeyDown(KeyCode.D))
-        {
-            rb.AddForce(direccionF3 * fuerzaad, ForceMode.Force);
-        }
-        while (Input.GetKeyDown(KeyCode.A))
-        {
-            rb.AddForce(direccionF3 * -fuerzaad, ForceMode.Force);
-        }
+        //
+        //if (Input.GetKey(KeyCode.W))
+        //{
+        //    rb.AddForce(direccionF2 * fuerzaws, ForceMode.Force);
+        //}
+        //if (Input.GetKey(KeyCode.S))
+        //{
+        //    rb.AddForce(direccionF2 * -fuerzaws, ForceMode.Force);
+        //}
+        //if (Input.GetKey(KeyCode.D))
+        //{
+        //    rb.AddForce(direccionF3 * fuerzaad, ForceMode.Force);
+        //}
+        //if (Input.GetKey(KeyCode.A))
+        //{
+        //    rb.AddForce(direccionF3 * -fuerzaad, ForceMode.Force);
+        //}
 
-        
 
-        
+
     }
 }
