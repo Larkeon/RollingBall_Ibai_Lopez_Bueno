@@ -6,7 +6,7 @@ public class PlataformaMovil : MonoBehaviour
 {
     [SerializeField] float velocidad;
     Vector3 vectorRotation = new Vector3(1,0,0);
-    float contador = 10f;
+    float contador = 7f;
     
     
     // Start is called before the first frame update
@@ -28,9 +28,9 @@ public class PlataformaMovil : MonoBehaviour
         else if(contador <= 0)
         {
             velocidad = velocidad * -1;
-            contador = 10f;
+            contador = 7f;
         }
 
-        Debug.Log(contador);
+      
     }
 }

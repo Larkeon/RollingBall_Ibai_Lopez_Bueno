@@ -9,8 +9,9 @@ public class Bola : MonoBehaviour
     Vector3 direccionF2 = new Vector3(0, 0, 1);
     Vector3 direccionF3 = new Vector3(1, 0, 0);
     [SerializeField] int fuerza;
-    [SerializeField] int fuerzaws;
-    [SerializeField] int fuerzaad;
+    [SerializeField] int velocidad;
+    
+    int puntos;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,6 @@ public class Bola : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.AddForce(new Vector3 (Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical")).normalized, ForceMode.Force);
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(direccionF  , ForceMode.Impulse);
@@ -45,5 +45,22 @@ public class Bola : MonoBehaviour
 
 
 
+    }
+
+    private void FixedUpdate()
+    {
+        rb.AddForce(new Vector3 (Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical")).normalized * velocidad, ForceMode.Force);
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Coleccionable"))
+        {
+            Destroy(other.gameObject);
+            puntos += 10;
+            Debug.Log(puntos);
+
+        }
     }
 }
