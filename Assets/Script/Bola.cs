@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Bola : MonoBehaviour
 {
+   
+        
     Rigidbody rb;
     Vector3 direccionF = new Vector3(0, 1, 0);
     Vector3 direccionF2 = new Vector3(0, 0, 1);
@@ -12,10 +15,12 @@ public class Bola : MonoBehaviour
     [SerializeField] int velocidad;
     
     int puntos;
+    [SerializeField] TMP_Text textoPuntos;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        textoPuntos.SetText("Puntuacion: " + puntos);
     }
 
     // Update is called once per frame
@@ -59,7 +64,7 @@ public class Bola : MonoBehaviour
         {
             Destroy(other.gameObject);
             puntos += 10;
-            Debug.Log(puntos);
+            textoPuntos.SetText("Puntuacion: " + puntos);
 
         }
     }
