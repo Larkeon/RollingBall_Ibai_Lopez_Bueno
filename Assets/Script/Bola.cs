@@ -13,6 +13,7 @@ public class Bola : MonoBehaviour
     Vector3 direccionF3 = new Vector3(1, 0, 0);
     [SerializeField] int fuerza;
     [SerializeField] int velocidad;
+    [SerializeField] float distanciaRay;
     
     int puntos;
     [SerializeField] TMP_Text textoPuntos;
@@ -26,8 +27,10 @@ public class Bola : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+       
+        if (Input.GetKeyDown(KeyCode.Space) && DetectarSuelo() == true)
         {
+            
             rb.AddForce(direccionF  , ForceMode.Impulse);
         }
         //
@@ -68,4 +71,12 @@ public class Bola : MonoBehaviour
 
         }
     }
+
+    private bool DetectarSuelo()
+    {
+        bool resultado = Physics.Raycast(transform.position, Vector3.down, distanciaRay);
+        Debug.DrawRay(transform.position, Vector3.down, Color.red, 0.153f);
+        return resultado;
+    }
+
 }
