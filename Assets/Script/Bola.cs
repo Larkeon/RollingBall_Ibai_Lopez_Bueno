@@ -13,16 +13,16 @@ public class Bola : MonoBehaviour
     Vector3 direccionF3 = new Vector3(1, 0, 0);
     [SerializeField] float fuerza;
     [SerializeField] float velocidad;
-    [SerializeField] float distanciaRay;
-    [SerializeField] Transform spawner;
+   
+    
     
     int puntos;
-    [SerializeField] TMP_Text textoPuntos;
+    
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        textoPuntos.SetText("Puntuacion: " + puntos);
+        //textoPuntos.SetText("Puntuacion: " + puntos);
     }
 
     // Update is called once per frame
@@ -64,23 +64,18 @@ public class Bola : MonoBehaviour
         {
             
             puntos += 10;
-            textoPuntos.SetText("Puntuacion: " + puntos);
+            //textoPuntos.SetText("Puntuacion: " + puntos);
 
         } 
         if (other.gameObject.CompareTag("Muros"))
         {
             Destroy(gameObject);
             puntos -= 10;
-            textoPuntos.SetText("Puntuacion: " + puntos);
+            //textoPuntos.SetText("Puntuacion: " + puntos);
 
         }
     }
 
-    private bool DetectarSuelo()
-    {
-        bool resultado = Physics.Raycast(transform.position, Vector3.down, distanciaRay);
-        Debug.DrawRay(transform.position, Vector3.down, Color.red, 0.153f);
-        return resultado;
-    }
+   
 
 }
