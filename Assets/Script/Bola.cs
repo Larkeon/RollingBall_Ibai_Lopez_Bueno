@@ -11,8 +11,8 @@ public class Bola : MonoBehaviour
     Vector3 direccionF = new Vector3(0, 1, 0);
     Vector3 direccionF2 = new Vector3(0, 0, 1);
     Vector3 direccionF3 = new Vector3(1, 0, 0);
-    [SerializeField] int fuerza;
-    [SerializeField] int velocidad;
+    [SerializeField] float fuerza;
+    [SerializeField] float velocidad;
     [SerializeField] float distanciaRay;
     
     int puntos;
@@ -31,7 +31,7 @@ public class Bola : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && DetectarSuelo() == true)
         {
             
-            rb.AddForce(direccionF  , ForceMode.Impulse);
+            Instantiate(rb);
         }
         //
         //if (Input.GetKey(KeyCode.W))
@@ -57,7 +57,7 @@ public class Bola : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForce(new Vector3 (Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical")).normalized * velocidad, ForceMode.Force);
+        rb.AddForce(new Vector3 (Input.GetAxisRaw("Horizontal"),0,0).normalized * velocidad, ForceMode.Force);
         
     }
 

@@ -10,12 +10,25 @@ public class Barra : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Rigidbody>().AddTorque(vectorVelocidad.normalized * velocidad, ForceMode.VelocityChange);
-        //rb.AddTorque(vectorVelocidad.normalized * velocidad, ForceMode.Impulse);
+            
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.E))
+        {
+            GetComponent<Rigidbody>().AddTorque(vectorVelocidad.normalized * velocidad, ForceMode.VelocityChange);
+            //rb.AddTorque(vectorVelocidad.normalized * velocidad, ForceMode.Impulse);
+
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            GetComponent<Rigidbody>().AddTorque(-vectorVelocidad.normalized * velocidad, ForceMode.VelocityChange);
+            //rb.AddTorque(vectorVelocidad.normalized * velocidad, ForceMode.Impulse);
+
+        }
     }
 }
