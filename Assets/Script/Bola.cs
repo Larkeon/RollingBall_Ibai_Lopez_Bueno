@@ -14,6 +14,7 @@ public class Bola : MonoBehaviour
     [SerializeField] float fuerza;
     [SerializeField] float velocidad;
     [SerializeField] float distanciaRay;
+    [SerializeField] Transform spawner;
     
     int puntos;
     [SerializeField] TMP_Text textoPuntos;
@@ -28,11 +29,7 @@ public class Bola : MonoBehaviour
     void Update()
     {
        
-        if (Input.GetKeyDown(KeyCode.Space) && DetectarSuelo() == true)
-        {
-            
-            Instantiate(rb);
-        }
+       
         //
         //if (Input.GetKey(KeyCode.W))
         //{
@@ -65,8 +62,15 @@ public class Bola : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Coleccionable"))
         {
-            Destroy(other.gameObject);
+            
             puntos += 10;
+            textoPuntos.SetText("Puntuacion: " + puntos);
+
+        } 
+        if (other.gameObject.CompareTag("Muros"))
+        {
+            Destroy(gameObject);
+            puntos -= 10;
             textoPuntos.SetText("Puntuacion: " + puntos);
 
         }
